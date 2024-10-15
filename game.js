@@ -3,9 +3,15 @@ let resetBtn = document.querySelector("#reset-btn");
 let newGameBtn = document.querySelector("#new-btn");
 let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector("#msg");
+let player1WinsElem = document.querySelector("#player1-wins");
+let player2WinsElem = document.querySelector("#player2-wins");
+let gamesPlayedElem = document.querySelector("#games-played");
 
 let turnO = true; //playerX, playerO
 let count = 0; //To Track Draw
+let gamesPlayed = 0; // Track total games
+let player1Wins = 0; // Player 1 Wins (X)
+let player2Wins = 0; // Player 2 Wins (O)
 
 const winPatterns = [
   [0, 1, 2],
@@ -23,26 +29,42 @@ const resetGame = () => {
   count = 0;
   enableBoxes();
   msgContainer.classList.add("hide");
+  if (gamesPlayed === 3) {
+    resetWins();
+  }
+};
+
+const resetWins = () => {
+  player1Wins = 0;
+  player2Wins = 0;
+  gamesPlayed = 0;
+  updateDisplay();
+};
+
+const updateDisplay = () => {
+  player1WinsElem.value = player1Wins;
+  player2WinsElem.value = player2Wins;
+  gamesPlayedElem.value = gamesPlayed;
 };
 
 boxes.forEach((box) => {
   box.addEventListener("click", () => {
-    if (turnO) {
-      //playerO
-      box.innerText = "O";
-      turnO = false;
-    } else {
-      //playerX
-      box.innerText = "X";
-      turnO = true;
-    }
-    box.disabled = true;
-    count++;
+    if (box.innerText === "") {
+      if (turnO) {
+        box.innerText = "O";
+        turnO = false;
+      } else {
+        box.innerText = "X";
+        turnO = true;
+      }
+      box.disabled = true;
+      count++;
 
-    let isWinner = checkWinner();
+      let isWinner = checkWinner();
 
-    if (count === 9 && !isWinner) {
-      gameDraw();
+      if (count === 9 && !isWinner) {
+        gameDraw();
+      }
     }
   });
 });
@@ -51,6 +73,8 @@ const gameDraw = () => {
   msg.innerText = `Game was a Draw.`;
   msgContainer.classList.remove("hide");
   disableBoxes();
+  gamesPlayed++;
+  updateDisplay();
 };
 
 const disableBoxes = () => {
@@ -70,6 +94,20 @@ const showWinner = (winner) => {
   msg.innerText = `Congratulations, Winner is ${winner}`;
   msgContainer.classList.remove("hide");
   disableBoxes();
+
+  // Update win count based on winner
+  if (winner === "X") {
+    player1Wins++;
+  } else {
+    player2Wins++;
+  }
+
+  gamesPlayed++;
+  updateDisplay();
+
+  if (gamesPlayed === 3) {
+    setTimeout(resetWins, 2000); // Reset after showing the message for 2 seconds
+  }
 };
 
 const checkWinner = () => {
@@ -85,6 +123,7 @@ const checkWinner = () => {
       }
     }
   }
+  return false;
 };
 
 newGameBtn.addEventListener("click", resetGame);

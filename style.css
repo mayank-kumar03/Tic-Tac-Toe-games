@@ -1,83 +1,132 @@
 * {
-    margin: 0;
-    padding: 0;
-  }
-  h1{
-    color: azure;
-  }
-  
-  body {
-    background-color: #548687;
-    background-image: url(wallpaper.jpg);
-    text-align: center;
-  }
-  
-  .container {
-    height: 70vh;
-    display: flex;
-  
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .game {
-    height: 60vmin;
-    width: 60vmin;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5vmin;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url(wallpaper.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Adjust for top and bottom alignment */
+  align-items: center;
+}
+
+h1 {
+  color: azure;
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 5px #000;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: auto;
+  width: 100%;
+}
+
+.game {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5vmin;
+  width: 60vmin;
+  height: auto;
+}
+
+.box {
+  height: 18vmin;
+  width: 18vmin;
+  border-radius: 1rem;
+  border: none;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+  font-size: 8vmin;
+  color: #b0413e;
+  background-color: #c9d42a;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.box:hover {
+  background-color: #a6bc1b;
+  transform: scale(1.05);
+}
+
+#reset-btn, #new-btn {
+  padding: 1rem;
+  font-size: 1.25rem;
+  background-color: #191913;
+  color: #fff;
+  border-radius: 1rem;
+  border: none;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#reset-btn:hover, #new-btn:hover {
+  background-color: #333;
+  transform: scale(1.05);
+}
+
+#msg {
+  color: #ffffc7;
+  font-size: 5vmin;
+}
+
+.msg-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.hide {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
   .box {
-    height: 18vmin;
-    width: 18vmin;
-    border-radius: 1rem;
-    border: none;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
-    font-size: 8vmin;
-    color: #b0413e;
-    background-color: #c9d42a;
+      height: 12vmin;
+      width: 12vmin;
+      font-size: 6vmin;
   }
-  
-  #reset-btn {
-    padding: 1rem;
-    font-size: 1.25rem;
-    background-color: #191913;
-    color: #fff;
-    border-radius: 1rem;
-    border: none;
-  }
-  
-  #new-btn {
-    padding: 1rem;
-    font-size: 1.25rem;
-    background-color: #191913;
-    color: #fff;
-    border-radius: 1rem;
-    border: none;
-  }
-  
+
   #msg {
-    color: #ffffc7;
-    font-size: 5vmin;
+      font-size: 4vmin;
   }
-  
-  .msg-container {
-    height: 100vmin;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 4rem;
+
+  h1 {
+      font-size: 3rem;
   }
-  
-  .hide {
-    display: none;
-  }
-  .Histroy-container{
-    bottom: height 20px; 
-    width: 100px;
-    border: #191913;
-  }
+}
+
+.History-container {
+  margin-top: 2rem;
+  text-align: center;
+  color: azure;
+}
+
+form {
+  margin-bottom: 2rem; /* Ensure it has some space from the bottom */
+}
+
+form label {
+  font-size: 1.5rem;
+}
+
+form input {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}

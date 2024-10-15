@@ -28,9 +28,18 @@
       </div>
       <button id="reset-btn">Reset Game</button>
     </main>
-    <script src="game.js"></script>
+    <!-- Add form to display win records -->
     <div class="History-container">
-      
+      <h2>Player Wins Record</h2>
+      <form>
+        <label for="player1-wins">Player 1 (X) Wins:</label>
+        <input type="text" id="player1-wins" value="0" readonly><br>
+        <label for="player2-wins">Player 2 (O) Wins:</label>
+        <input type="text" id="player2-wins" value="0" readonly><br>
+        <label for="games-played">Games Played:</label>
+        <input type="text" id="games-played" value="0" readonly><br>
+      </form>
     </div>
+    <script src="game.js"></script>
   </body>
 </html>
